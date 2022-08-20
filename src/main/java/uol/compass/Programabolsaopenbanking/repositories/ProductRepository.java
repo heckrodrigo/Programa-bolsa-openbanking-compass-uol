@@ -1,6 +1,8 @@
 package uol.compass.Programabolsaopenbanking.repositories;
 
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.Id;
@@ -14,8 +16,13 @@ import uol.compass.Programabolsaopenbanking.models.ProductModel;
 public interface ProductRepository extends JpaRepository<ProductModel, Id> {
 
 	Optional<ProductModel> findById(long id);
+	
+	List<ProductModel> findByPriceGreaterThan (BigDecimal priceBigDecimal);
+	List<ProductModel> findByPriceLessThan (BigDecimal priceBigDecimal);
 
+	
 
+	
 
 			
 	
