@@ -15,17 +15,11 @@ import uol.compass.Programabolsaopenbanking.models.ProductModel;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductModel, Id> {
 
-	Optional<ProductModel> findById(long id);
-	
+	Optional<ProductModel> findById(long id);	
 	List<ProductModel> findByPriceGreaterThan (BigDecimal priceBigDecimal);
 	List<ProductModel> findByPriceLessThan (BigDecimal priceBigDecimal);
 
-	
 
-	
-
-			
-	
 	
 	
 }
