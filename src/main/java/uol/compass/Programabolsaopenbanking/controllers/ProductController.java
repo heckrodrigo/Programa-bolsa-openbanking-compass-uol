@@ -103,6 +103,43 @@ public class ProductController {
 		
 	}
 	
+	// Método PUT - Atualizar
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateProductModel(@PathVariable(value = "id") long id,
+			@RequestBody @Valid ProductDto productDto) {
+
+		Optional<ProductModel> productModelOptional = Optional.ofNullable(productService.findById(id));
+		if (!productModelOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
+
+		}
+
+		var productModel = productModelOptional.get();
+		productModel.setName(productDto.getName());
+		productModel.setDescription(productDto.getDescription());
+		productModel.setPrice(productDto.getPrice());
+
+		return ResponseEntity.status(HttpStatus.OK).body(productService.save(productModel));
+
+	}
+
+	// Método delete
+
+	@DeleteMapping("{id}")
+	public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") long id) {
+		Optional<ProductModel> productModelOptional = Optional.ofNullable(productService.findById(id));
+		// Verifica se o ID é existente
+		if (!productModelOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produdo não existente.");
+
+		}
+
+		productService.delete(productModelOptional.get());
+		return ResponseEntity.status(HttpStatus.OK).body("Produto deletado");
+
+	}
+
 	
 	
 
