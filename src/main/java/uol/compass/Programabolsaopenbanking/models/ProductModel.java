@@ -1,6 +1,6 @@
 package uol.compass.Programabolsaopenbanking.models;
 
-import java.math.BigDecimal;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ public class ProductModel {
 	private long id;
 	private String name;
 	private String description;
-	private BigDecimal price;
+	private double price;
 	
 
 	public long getId() {
@@ -44,11 +44,11 @@ public class ProductModel {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

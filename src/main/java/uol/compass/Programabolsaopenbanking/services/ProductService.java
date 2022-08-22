@@ -66,12 +66,12 @@ public class ProductService {
 	}
 
 	// Método que busca o produto listando através do maior preço
-	public List findByPriceGreaterThan(BigDecimal price) {
+	public List findByPriceGreaterThan(double price) {
 		return productRepository.findByPriceGreaterThan(price);
 	}
 
 	// Método que busca o produto listando através do menor preço
-	public List findByPriceLessThan(BigDecimal price) {
+	public List findByPriceLessThan(double price) {
 		return productRepository.findByPriceLessThan(price);
 	}
 

@@ -1,6 +1,5 @@
 package uol.compass.Programabolsaopenbanking.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,20 +62,22 @@ public class ProductController {
 
 	@GetMapping
 	public ResponseEntity<List<ProductModel>> getAllProducts() {
+		
 		return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
 
 	}
 
 	// Método GET search maior preço max_price
 	@GetMapping(value = "/search/max_price")
-	public ResponseEntity<List<ProductModel>> getProductByGreaterThan(@RequestParam BigDecimal price) {
+
+	public ResponseEntity<List<ProductModel>> getProductByGreaterThan(@RequestParam double price) {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.findByPriceGreaterThan(price));
 
 	}
 
 	// Método GET search menor preço min_price
 	@GetMapping(value = "/search/min_price")
-	public ResponseEntity<List<ProductModel>> getProductByLessThan(@RequestParam BigDecimal price) {
+	public ResponseEntity<List<ProductModel>> getProductByLessThan(@RequestParam double price) {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.findByPriceLessThan(price));
 
 	}
@@ -91,6 +92,7 @@ public class ProductController {
 		ProductModel objModel= productService.findById(id);
 		return ResponseEntity.ok().body(objModel);
 		}
+		//tratando exceção 500 - converter para 400
 		catch (EntityNotFoundException e) {
 			StandarError err = new StandarError();
 			err.setStatus_code(HttpStatus.NOT_FOUND.value());
@@ -108,19 +110,29 @@ public class ProductController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateProductModel(@PathVariable(value = "id") long id,
 			@RequestBody @Valid ProductDto productDto) {
-
+		
+		try {
 		Optional<ProductModel> productModelOptional = Optional.ofNullable(productService.findById(id));
-		if (!productModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
-
-		}
+		
 
 		var productModel = productModelOptional.get();
 		productModel.setName(productDto.getName());
 		productModel.setDescription(productDto.getDescription());
-		productModel.setPrice(productDto.getPrice());
-
+		productModel.setPrice(productDto.getPrice()); 
+		
 		return ResponseEntity.status(HttpStatus.OK).body(productService.save(productModel));
+		
+		}
+		
+		catch (EntityNotFoundException e) {
+			StandarError err = new StandarError();
+			err.setStatus_code(HttpStatus.NOT_FOUND.value());
+			err.setMessage(e.getMessage());
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+		}
+
+		
 
 	}
 
@@ -128,14 +140,20 @@ public class ProductController {
 
 	@DeleteMapping("{id}")
 	public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") long id) {
+		try {
 		Optional<ProductModel> productModelOptional = Optional.ofNullable(productService.findById(id));
-		// Verifica se o ID é existente
-		if (!productModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produdo não existente.");
-
+		productService.delete(productModelOptional.get());	
 		}
 
-		productService.delete(productModelOptional.get());
+		catch (EntityNotFoundException e) {
+			StandarError err = new StandarError();
+			err.setStatus_code(HttpStatus.NOT_FOUND.value());
+			err.setMessage(e.getMessage());
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+		}
+		
+		
 		return ResponseEntity.status(HttpStatus.OK).body("Produto deletado");
 
 	}

@@ -14,7 +14,7 @@ public class ProductDto {
 	private String name;
 	@NotBlank
 	private String description;
-	private BigDecimal price;
+	private double price;
 	
 	
 	public long getId() {
@@ -36,10 +36,10 @@ public class ProductDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
