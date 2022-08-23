@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.Programabolsaopenbanking.dtos.ProductDto;
 import uol.compass.Programabolsaopenbanking.models.ProductModel;
-import uol.compass.Programabolsaopenbanking.resources.exceptions.StandarError;
+import uol.compass.Programabolsaopenbanking.resources.exceptions.StandardError;
 import uol.compass.Programabolsaopenbanking.services.ProductService;
 import uol.compass.Programabolsaopenbanking.services.exceptions.EntityNotFoundException;
 
@@ -94,7 +94,7 @@ public class ProductController {
 		}
 		//tratando exceção 500 - converter para 400
 		catch (EntityNotFoundException e) {
-			StandarError err = new StandarError();
+			StandardError err = new StandardError();
 			err.setStatus_code(HttpStatus.NOT_FOUND.value());
 			err.setMessage(e.getMessage());
 			
@@ -125,7 +125,7 @@ public class ProductController {
 		}
 		
 		catch (EntityNotFoundException e) {
-			StandarError err = new StandarError();
+			StandardError err = new StandardError();
 			err.setStatus_code(HttpStatus.NOT_FOUND.value());
 			err.setMessage(e.getMessage());
 			
@@ -146,7 +146,7 @@ public class ProductController {
 		}
 
 		catch (EntityNotFoundException e) {
-			StandarError err = new StandarError();
+			StandardError err = new StandardError();
 			err.setStatus_code(HttpStatus.NOT_FOUND.value());
 			err.setMessage(e.getMessage());
 			
