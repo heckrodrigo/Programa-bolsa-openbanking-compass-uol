@@ -1,18 +1,11 @@
 package uol.compass.Programabolsaopenbanking.dtos;
 
-import java.math.BigDecimal;
-
-
-
-import javax.validation.constraints.NotBlank;
 
 
 public class ProductDto {
 
 	private long id;
-	@NotBlank
 	private String name;
-	@NotBlank
 	private String description;
 	private double price;
 	

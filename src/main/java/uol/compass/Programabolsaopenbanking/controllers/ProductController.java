@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
+
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,12 +56,13 @@ public class ProductController {
 	    })
 	 //Início do método 
 	@PostMapping
-	public ResponseEntity<Object> saveProduct(@RequestBody @Valid ProductDto productDto) {
+	public ResponseEntity<Object> saveProduct(@RequestBody @Validated ProductDto productDto) {
 
 		var productModel = new ProductModel();
 		// converter DTO em Model
 		BeanUtils.copyProperties(productDto, productModel);
 		//
+		
 		return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(productModel));
 
 	}
@@ -139,7 +140,7 @@ public class ProductController {
     // início do método
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateProductModel(@PathVariable(value = "id") long id,
-			@RequestBody @Valid ProductDto productDto) {
+			@RequestBody @Validated ProductDto productDto) {
 
 		try {
 			Optional<ProductModel> productModelOptional = Optional.ofNullable(productService.findById(id));
