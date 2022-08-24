@@ -1,18 +1,17 @@
 package uol.compass.Programabolsaopenbanking.services;
 
-import java.math.BigDecimal;
+
 import java.util.List;
-import java.util.Optional;
-import javax.persistence.Id;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import uol.compass.Programabolsaopenbanking.models.ProductModel;
 import uol.compass.Programabolsaopenbanking.repositories.ProductRepository;
-import uol.compass.Programabolsaopenbanking.services.exceptions.*;
+import uol.compass.Programabolsaopenbanking.resources.exceptions.DataIntegrityException;
+
 
 
 
@@ -51,7 +50,7 @@ public class ProductService {
 	public ProductModel findById(Long id) {
 		
 		return productRepository.findById(id).orElseThrow(
-				()-> new  EntityNotFoundException("ID " +id+ " não existente." ));
+				()-> new  DataIntegrityException("ID " +id+ " não existente." ));
 		
 		
 	}
@@ -74,6 +73,7 @@ public class ProductService {
 	public List findByPriceLessThan(double price) {
 		return productRepository.findByPriceLessThan(price);
 	}
+
 
 
 }
