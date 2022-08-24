@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img align="center" alt="Logo Compass.UOL"  height="100" src="https://logospng.org/wp-content/uploads/compasso-uol.png" /><br>
+  <img align="center" alt="Logo Compass.UOL"  height="300" src="https://github.com/heckrodrigo/Programa-bolsa-openbanking-compass-uol/blob/main/src/main/resources/templates/compass.png" /><br>
   MS-Product - Programa de Bolsa API Documentation
 </h3>
 
