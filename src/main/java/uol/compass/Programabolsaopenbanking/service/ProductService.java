@@ -27,7 +27,8 @@ public class ProductService {
     public ProductService(ProductRepository repository) {
         this.repository = repository;
     }
-
+    
+    // Método que busca todos os produtos
     public List<ProductDTO> getAllProducts() {
         return repository.findAll()
                 .stream()
@@ -35,16 +36,19 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    // Método que salva um novo produto na lista
     public ProductDTO saveProduct(ProductDTO productDTO) {
         var productPersisted =  repository.save(Product.mapperToProduct(productDTO));
 
         return ProductDTO.mapperToProductDTO(productPersisted);
     }
-
+    
+    // Método que busca o produto pelo do ID
     public ProductDTO getOneProduct(Long id) {
         return ProductDTO.mapperToProductDTO(repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND)));
     }
 
+    // Método que atualiza os dados de um produto na lista
     public ProductDTO updateProduct(ProductDTO productDTO, Long id) {
         var findedProduct = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
 
@@ -55,6 +59,7 @@ public class ProductService {
         return ProductDTO.mapperToProductDTO(repository.save(findedProduct));
     }
 
+    // Método que deleta um produto
     public void deleteProduct(Long id) {
         var findedProduct = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
 
@@ -72,5 +77,12 @@ public class ProductService {
 	public List findByPriceLessThan(double price) {
 		return repository.findByPriceLessThan(price);
 	}
+	
+	
+	
+	}
+	
+	
+	
 
-}
+

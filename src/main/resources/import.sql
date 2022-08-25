@@ -1,0 +1,7 @@
+INSERT INTO product (name, description, price) VALUES ('Samsung Galaxy S20', 'A1 lorem1 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3590.5);
+INSERT INTO product (name, description, price) VALUES ('Smart TV', 'A2lorem ipsum1 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2190.0);
+INSERT INTO product (name, description, price) VALUES ('Monitor LG Flatron', 'A3 Lorem2 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1250.0);
+INSERT INTO product (name, description, price) VALUES ('PC intel Core I7', 'A4 lorem1 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1200.0);
+INSERT INTO product (name, description, price) VALUES ('Notebook HP', 'A5 For lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 100.99);
+INSERT INTO product (name, description, price) VALUES ('Iphone 12', 'A6 lorem2 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1350.0);
+INSERT INTO product (name, description, price) VALUES ('Macbook PRO', 'A7 Lorem2 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 12500.0);

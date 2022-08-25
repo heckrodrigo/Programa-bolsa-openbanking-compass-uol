@@ -1,8 +1,10 @@
 package uol.compass.Programabolsaopenbanking.controller;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -28,6 +31,7 @@ import uol.compass.Programabolsaopenbanking.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
+@Api(value = "Product")
 public class ProductController {
 
     private final ProductService productService;
@@ -59,6 +63,8 @@ public class ProductController {
     public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         return new ResponseEntity<>(productService.saveProduct(productDTO), HttpStatus.CREATED);
     } 
+	 
+	 	 
     
 	// Método GET search maior preço max_price
 	@ApiOperation("Filtrar produtos pelo parâmetro max_price")
