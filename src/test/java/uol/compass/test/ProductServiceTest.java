@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import uol.compass.Programabolsaopenbanking.exception.ObjectNotFoundException;
 import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
 import uol.compass.Programabolsaopenbanking.service.ProductService;
 import uol.compass.test.utils.TestConstants;

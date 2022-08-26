@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import uol.compass.Programabolsaopenbanking.exception.ObjectNotFoundException;
 
 import uol.compass.Programabolsaopenbanking.service.ProductService;
 import uol.compass.test.utils.TestConstants;
@@ -33,7 +33,7 @@ import uol.compass.test.utils.TestConstants;
 
 	    @Test
 	    void testGetOneProductNotFound() throws Exception {
-	        when(productService.getOneProduct(10L)).thenThrow(new ObjectNotFoundException("product not found"));
+	        when(productService.getOneProduct(10L)).thenThrow(new ObjectNotFoundException("Produto não encontrado"));
 	        this.mockMvc.perform(get("/products/10")).andExpect(MockMvcResultMatchers.status().isNotFound());
 	    }
 	}
