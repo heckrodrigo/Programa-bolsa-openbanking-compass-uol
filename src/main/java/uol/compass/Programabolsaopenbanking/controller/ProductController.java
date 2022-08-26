@@ -23,6 +23,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javassist.tools.rmi.ObjectNotFoundException;
 import uol.compass.Programabolsaopenbanking.model.Product;
 import uol.compass.Programabolsaopenbanking.model.dto.ProductDTO;
 import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
@@ -117,7 +118,7 @@ public class ProductController {
 			@ApiResponse(code = 500, message = "Ocorreu alguma exceção na aplicação") })
 	// início do End-point
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getOneProduct(@PathVariable Long id) {
+    public ResponseEntity<ProductDTO> getOneProduct(@PathVariable Long id) throws ObjectNotFoundException {
         return ResponseEntity.ok(productService.getOneProduct(id));
     }
 	
@@ -130,7 +131,7 @@ public class ProductController {
     
     // início do End-point
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@Valid @RequestBody ProductDTO productDTO, @PathVariable Long id) {
+    public ResponseEntity<ProductDTO> updateProduct(@Valid @RequestBody ProductDTO productDTO, @PathVariable Long id) throws ObjectNotFoundException {
         return ResponseEntity.ok(productService.updateProduct(productDTO, id));
     }
     
@@ -142,7 +143,7 @@ public class ProductController {
 	    })
 	// início do End-point
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) throws ObjectNotFoundException {
         productService.deleteProduct(id);
         return ResponseEntity.status(HttpStatus.OK).body("Produto deletado");
     }

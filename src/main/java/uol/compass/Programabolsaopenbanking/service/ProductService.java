@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import uol.compass.Programabolsaopenbanking.exception.ProductNotFoundException;
+import uol.compass.Programabolsaopenbanking.exception.ObjectNotFoundException;
 import uol.compass.Programabolsaopenbanking.model.Product;
 import uol.compass.Programabolsaopenbanking.model.dto.ProductDTO;
 import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
@@ -44,13 +44,13 @@ public class ProductService {
     }
     
     // Método que busca o produto pelo do ID
-    public ProductDTO getOneProduct(Long id) {
-        return ProductDTO.mapperToProductDTO(repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND)));
+    public ProductDTO getOneProduct(Long id) throws ObjectNotFoundException {
+        return ProductDTO.mapperToProductDTO(repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(MESSAGE_PRODUCT_NOT_FOUND)));
     }
 
     // Método que atualiza os dados de um produto na lista
-    public ProductDTO updateProduct(ProductDTO productDTO, Long id) {
-        var findedProduct = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
+    public ProductDTO updateProduct(ProductDTO productDTO, Long id) throws ObjectNotFoundException {
+        var findedProduct = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
 
         findedProduct.setName(productDTO.getName());
         findedProduct.setDescription(productDTO.getDescription());
@@ -60,8 +60,8 @@ public class ProductService {
     }
 
     // Método que deleta um produto
-    public void deleteProduct(Long id) {
-        var findedProduct = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
+    public void deleteProduct(Long id) throws ObjectNotFoundException {
+        var findedProduct = repository.findById(id).orElseThrow(() -> new uol.compass.Programabolsaopenbanking.exception.ObjectNotFoundException(MESSAGE_PRODUCT_NOT_FOUND));
 
         repository.delete(findedProduct);
     }

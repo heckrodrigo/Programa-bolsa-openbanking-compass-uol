@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javassist.tools.rmi.ObjectNotFoundException;
 import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
 import uol.compass.Programabolsaopenbanking.service.ProductService;
 import uol.compass.test.utils.TestConstants;
@@ -36,7 +37,7 @@ class ProductServiceTest {
     }
 
     @Test
-    void testGetProductSuccess() {
+    void testGetProductSuccess() throws ObjectNotFoundException {
         var product = TestCreator.createProduct();
         when(productRepository.findById(TestConstants.DEFAULT_PRODUCT_ID)).thenReturn(Optional.of(product));
 
