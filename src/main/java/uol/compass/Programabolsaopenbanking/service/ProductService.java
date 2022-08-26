@@ -77,6 +77,11 @@ public class ProductService {
 	public List findByPriceLessThan(double price) {
 		return repository.findByPriceLessThan(price);
 	}
+
+	public List<Product> search(String name) {
+		
+		return repository.search(name);
+	}
 	
 	
 	
