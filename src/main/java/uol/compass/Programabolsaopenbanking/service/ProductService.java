@@ -20,7 +20,7 @@ import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
 @Service
 @Transactional
 public class ProductService {
-    public static final String MESSAGE_PRODUCT_NOT_FOUND = "Product not found";
+    public static final String MESSAGE_PRODUCT_NOT_FOUND = "Produto não encontrado.";
 
     private final ProductRepository repository;
 
@@ -68,7 +68,7 @@ public class ProductService {
     
     
 	// Método que busca o produto listando através do maior preço
-	public List findByPriceGreaterThan(double price) {
+	public List findByPriceGreaterThan(double price) throws ObjectNotFoundException{
 		return repository.findByPriceGreaterThan(price);
 	}
 

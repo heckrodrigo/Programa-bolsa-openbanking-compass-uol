@@ -26,7 +26,6 @@ import io.swagger.annotations.ApiResponses;
 import javassist.tools.rmi.ObjectNotFoundException;
 import uol.compass.Programabolsaopenbanking.model.Product;
 import uol.compass.Programabolsaopenbanking.model.dto.ProductDTO;
-import uol.compass.Programabolsaopenbanking.repository.ProductRepository;
 import uol.compass.Programabolsaopenbanking.service.ProductService;
 
 
@@ -51,7 +50,7 @@ public class ProductController {
 			@ApiResponse(code = 500, message = "Ocorreu alguma exceção na aplicação") })
 	// início do End-point
 	@GetMapping
-    public ResponseEntity<List<ProductDTO>> getProducts() {
+    public ResponseEntity<List<ProductDTO>> getProducts() throws ObjectNotFoundException {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 	// End-point POST
@@ -63,7 +62,7 @@ public class ProductController {
 	    })
 	 //Início do End-point 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) throws ObjectNotFoundException {
         return new ResponseEntity<>(productService.saveProduct(productDTO), HttpStatus.CREATED);
     } 
 	 
@@ -78,7 +77,7 @@ public class ProductController {
 	// início do End-point
 	@GetMapping(value = "/search/max_price")
 
-	public ResponseEntity<List<Product>> getProductByGreaterThan(@RequestParam double price) {
+	public ResponseEntity<List<Product>> getProductByGreaterThan(@RequestParam double price) throws ObjectNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.findByPriceGreaterThan(price));
 
 	}
@@ -90,7 +89,7 @@ public class ProductController {
 			@ApiResponse(code = 500, message = "Ocorreu alguma exceção na aplicação") })
 	// início do End-point	
 	@GetMapping(value = "/search/min_price")
-	public ResponseEntity<List<Product>> getProductByLessThan(@RequestParam double price) {
+	public ResponseEntity<List<Product>> getProductByLessThan(@RequestParam double price) throws ObjectNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.findByPriceLessThan(price));
 
 	}
@@ -104,7 +103,7 @@ public class ProductController {
 	// início do End-point	
 	@GetMapping(value = "/search")
 	@ResponseBody
-	public ResponseEntity<List<Product>> search(@RequestParam (name="name") String name){
+	public ResponseEntity<List<Product>> search(@RequestParam (name="name") String name)throws ObjectNotFoundException {
 		List<Product> product = productService.search(name);
 		
 		return new ResponseEntity<List<Product>>(product, HttpStatus.OK);

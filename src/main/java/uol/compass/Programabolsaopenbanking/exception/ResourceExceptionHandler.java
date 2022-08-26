@@ -13,14 +13,14 @@ public class ResourceExceptionHandler {
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 		
-		StandardError erro = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Não encontrado.", e.getMessage(), request.getRequestURI());
+		StandardError erro = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Produto não existe na base de dados.", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
 	}
 
 	@ExceptionHandler(DataIntegrityException.class)
 	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException e, HttpServletRequest request) {
 		
-		StandardError erro = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Erro na integridade de dados.", e.getMessage(), request.getRequestURI());
+		StandardError erro = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Erro de integridade de dados.", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
 	
