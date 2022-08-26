@@ -48,7 +48,7 @@ Para rodar estas aplicações, você deve ter instalado em seu computador:
 3. Após a execução dos processos anteriores, estarão disponíveis para acesso em seu browser os seguintes `Endpoints` para teste:
 <ul> 
   <li>
-   <a href="http://localhost:9999" target="_blank">API-REST (http://localhost:9999)</a>
+   <a href="http://localhost:9999/products" target="_blank">API-REST (http://localhost:9999/products)</a>
 
   <li>
    <a href="http://localhost:9999/h2-console" target="_blank">H2DB Console (http://localhost:9999/h2-console)</a>
