@@ -8,9 +8,17 @@
 
 Desenvolver uma `API REST` de catálogo de produtos que contemple as seguintes operações nos respectivos `Endpoints`:
 
-<p align="center">
-  <img align="center" src="https://github.com/heckrodrigo/Programa-bolsa-openbanking-compass-uol/blob/main/src/main/resources/templates/endpoints.png" />
-</p>
+<ul>
+  <li> <b>POST</b> - /products - Cria um produto no banco H2
+  <li> <b>PUT</b> - /products/{id} - Atualizar um produto no banco 
+  <li> <b>GET</b> - /products/{id} - Busca um produto no banco atráves do ID
+  <li> <b>GET</b> - /products - Busca todos os produtos cadastrados no banco
+  <li> <b>GET</b> -  /products/search - Lista os produtos atrás de um filtro de nome
+  <li> <b>GET</b> -  /products/search/min_price - Lista os produtos atrás de um filtro de menor preço
+  <li> <b>GET</b> -  /products/search/max_price - Lista os produtos atrás de um filtro de maior preço
+  <li> <b>DELETE</b> - /products/{id} - Deleta um produto 
+</ul>
+
 
 
 <h4>Tecnologias</h4> 
@@ -20,7 +28,6 @@ Desenvolver uma `API REST` de catálogo de produtos que contemple as seguintes o
   <li> Maven
   <li> H2 Database
   <li> Swagger
-  <li> Validation
   <li> JUnit
   <li> Jpa
 </ul>
