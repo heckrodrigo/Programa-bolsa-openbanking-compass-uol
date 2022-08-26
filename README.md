@@ -18,7 +18,6 @@ Desenvolver uma `API REST` de catálogo de produtos que contemple as seguintes o
   <li> Java 11
   <li> Spring Boot 
   <li> Maven
-  <li> Lombok
   <li> H2 Database
   <li> Swagger
   <li> Validation
