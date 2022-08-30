@@ -2,10 +2,9 @@ package uol.compass.Programabolsaopenbanking.service;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import uol.compass.Programabolsaopenbanking.exception.ObjectNotFoundException;
@@ -29,11 +28,9 @@ public class ProductService {
     }
     
     // Método que busca todos os produtos
-    public List<ProductDTO> getAllProducts() {
-        return repository.findAll()
-                .stream()
-                .map(ProductDTO::mapperToProductDTO)
-                .collect(Collectors.toList());
+    public Iterable<Product> getAllProducts() {
+        return repository.findAll(PageRequest.of(0, 10));
+                
     }
 
     // Método que salva um novo produto na lista
@@ -86,8 +83,3 @@ public class ProductService {
 	
 	
 	}
-	
-	
-	
-
-

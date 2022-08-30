@@ -1,6 +1,7 @@
 package uol.compass.Programabolsaopenbanking.model.dto;
 
-import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -9,9 +10,11 @@ import uol.compass.Programabolsaopenbanking.model.Product;
 	public class ProductDTO {
 
 	private Long id;
-	@NotBlank(message = "O nome é obrigatório")
+	@NotNull(message = "O nome é obrigatório")
+	@NotEmpty(message = "O nome é obrigatório")
 	private String name;
-	@NotBlank(message = "A descrição é obrigatória")
+	@NotNull(message = "A descrição é obrigatória")
+	@NotEmpty(message = "A descrição é obrigatória")
 	private String description;
 	@NotNull(message = "O preço é obrigatório")
 	@Positive(message = "Não é permitido valores negativos")

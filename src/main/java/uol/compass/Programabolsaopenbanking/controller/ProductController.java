@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,16 +42,18 @@ public class ProductController {
        
     }  
    
-	// End-point GET ALL
-	@ApiOperation("Listar todos os produtos")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna a lista de todos os produtos"),
-			@ApiResponse(code = 400, message = "Entrada inválida"),
-			@ApiResponse(code = 500, message = "Ocorreu alguma exceção na aplicação") })
-	// início do End-point
-	@GetMapping
-    public ResponseEntity<List<ProductDTO>> getProducts() throws ObjectNotFoundException {
-        return ResponseEntity.ok(productService.getAllProducts());
-    }
+ // End-point GET ALL
+ 	@ApiOperation("Listar todos os produtos")
+ 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna a lista de todos os produtos"),
+ 			@ApiResponse(code = 400, message = "Entrada inválida"),
+ 			@ApiResponse(code = 500, message = "Ocorreu alguma exceção na aplicação") })
+ 	// início do End-point
+ 	@GetMapping
+     public ResponseEntity<Iterable<Product>> getProducts() throws ObjectNotFoundException {
+         return (ResponseEntity<Iterable<Product>>) ResponseEntity.ok(productService.getAllProducts());
+     }
+ 	
+ 	
 	// End-point POST
 	 @ApiOperation("Salva um produto")
 	    @ApiResponses(value = {
@@ -62,7 +63,7 @@ public class ProductController {
 	    })
 	 //Início do End-point 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) throws ObjectNotFoundException {
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody @Valid ProductDTO productDTO) throws ObjectNotFoundException {
         return new ResponseEntity<>(productService.saveProduct(productDTO), HttpStatus.CREATED);
     } 
 	 
